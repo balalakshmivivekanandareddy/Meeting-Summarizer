@@ -1,13 +1,13 @@
 import { GoogleGenAI, Type } from '@google/genai';
-import type { SummaryResult } from '../types.ts'; // Ensure .ts extension is here
+import type { SummaryResult } from '../types.ts'; 
 
-// FIX: Change the check to look for GEMINI_API_KEY, which is the variable name
-// set in Vercel and exposed by the updated vite.config.ts.
+// CRITICAL FIX: Check for the full variable name (GEMINI_API_KEY)
 if (!process.env.GEMINI_API_KEY) {
-    throw new Error("API KEY environment variable not set. Please set it in your environment.");
+    // Customizing the error message to reflect the correct key being checked
+    throw new Error("GEMINI_API_KEY environment variable not set. Please set it in your environment.");
 }
 
-// FIX: Initialize the SDK using the GEMINI_API_KEY variable.
+// CRITICAL FIX: Initialize the SDK using the correct variable name.
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
 
 // --- Helper function to convert File to a GenerativePart ---
